@@ -14,7 +14,7 @@ include("funciones.jl")  # archivo funciones.jl que contiene las funciones
 
 # Poner ruta donde se guardarán los archivos
 #pwd = "/home/mjdomenech/TrabajoFinal/ArchivosCCAD/JuliaThreads/marzo1/"
-pwd = "/home/mjdomenech/Paper/Simulaciones-a-fijo/"
+pwd = "/home/mjdomenech/paper/simulaciones-a-fijo/"
 
 (a, N, l, cantidad_simulaciones) = ARGS   #ojo que los ARGS los toma como strings (aunque ingrese por ej: 0.01 100 10E4 5)
 
