@@ -8,31 +8,49 @@ import matplotlib.pyplot as plt
 
 # Directorio donde están los datos
 #pwd = 'C:/Users/mariajose/Desktop/archivos-para-ccad/simulaciones-Durga/simulaciones-BUENAS/'
-pwd = 'C:/Users/mariajose/Documents/GitHub/paper1/simulaciones/'
+pwd = 'C:/Users/mariajose/Documents/GitHub/simulaciones/'
 
 
-# Importar datos
-data0 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_44990_100_10E6_1_2024-05-07-01-33-47.txt') 
-data1 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_44990_1000_10E6_1_2024-05-07-03-07-08.txt')
-data2 = np.loadtxt(pwd+'simulaciones-trabajofinal/09/retorno_09_5000_10E6.txt')
-#data3 = np.loadtxt(pwd+'delta_001_100_10E6.txt')
-data3 = 1
+a = 10
+title = True
 
-#data0 = np.loadtxt(pwd+'09/retorno_09_10000_10E6.txt') 
-#data1 = np.loadtxt(pwd+'09/retorno_09_5000_10E6.txt')
-#data2 = np.loadtxt(pwd+'09/retorno_09_1000_10E6.txt')
-#data3 = np.loadtxt(pwd+'09/retorno_09_100_10E6.txt')
-
-#data0 = np.loadtxt(pwd+'1N/retorno_00001_10000_10E6_RECONSTRUIDO.txt') 
-#data1 = np.loadtxt(pwd+'1N/retorno_00002_5000_10E6_RECONSTRUIDO.txt')
-#data2 = np.loadtxt(pwd+'1N/retorno_0001_1000_10E6.txt')
-#data3 = np.loadtxt(pwd+'1N/retorno_001_100_10E6.txt')
+def alpha(a,N):
+    return (a+1)/(N+a)
 
 # Ruta para guardar graficos
-pwdgraf = 'C:/Users/mariajose/Desktop/graficos_tf/'
-save_fig = False
+pwdgraf = 'C:/Users/mariajose/Documents/GitHub/graficos/'
+save_fig = True
 #nombre_archivo = 'retornos_09_norm-val-max'
-nombre_archivo = 'retornos_1N_norm-val-max4'
+nombre_archivo = 'retornos_a_fijo_'+str(a)
+
+# Importar datos
+
+#data3 = np.load(pwd+'simulaciones-trabajofinal/SimulacionesOtrosAlpha/retorno_09995_100_10E5.npy') 
+#data3 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_197900_100_10E6_1_2024-05-09-17-33-45.txt')
+#data2 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_197900_1000_10E6_1_2024-05-07-15-31-03.txt')
+#data1 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_197900_5000_10E6_1_2024-05-08-07-02-28.txt')
+#data0 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_197900_10000_10E6_1_2024-05-09-16-30-42.txt')
+
+
+#data3 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_44990_100_10E6_1_2024-05-07-01-33-47.txt') 
+#data2 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_44990_1000_10E6_1_2024-05-07-03-07-08.txt')
+#data1 = np.loadtxt(pwd+'simulaciones-trabajofinal/09/retorno_09_5000_10E6.txt')
+#data0 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_44990_10000_10E6_concatenado1.txt') 
+
+
+#data3 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_8990_100_10E6_1_2024-05-06-16-59-52.txt') 
+#data2 = np.loadtxt(pwd+'simulaciones-trabajofinal/09/retorno_09_1000_10E6.txt')
+#data1 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_8990_5000_10E6_1_2024-05-07-14-50-40.txt')
+#data0 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_8990_10000_10E6_concatenado1.txt') 
+
+data3 = np.loadtxt(pwd+'simulaciones-trabajofinal/1N/retorno_001_100_10E6.txt') 
+data2 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_10_1000_10E6_1_2024-05-07-14-06-41.txt')
+data1 = np.loadtxt(pwd+'simulaciones-a-fijo/retorno_10_5000_10E6_concatenado1.txt')
+#data0 = np.loadtxt(pwd+'simulaciones-a-fijo/delta_8990_10000_10E6_concatenado1.txt') 
+data0 = 0
+
+
+
 
 color0 = 'gold'
 color1 = 'dodgerblue'#'blue'
@@ -44,23 +62,24 @@ marker1 = 's'
 marker2 = 'o'
 marker3 = '^'
 
-label0 = '$N = 10^4$'
-label1 = '$N = 5x10^3$'
-label2 = '$N = 10^3$'
-label3 = '$N = 10^2$'
+label0 = f'$N = 10^4$, {round(alpha(a,10000),4)}'
+label1 = f'$N = 5x10^3$, {round(alpha(a,5000),4)}'
+label2 = f'$N = 10^3$, {round(alpha(a,1000),4)}'
+label3 = f'$N = 10^2$, {round(alpha(a,100),4)}'
 
 lim_grafico = [-20500,20500]
 lim_grafico_zoom = [-2000,2000]
-lim_grafico_ZOOMZOOM = [-40,40]
+lim_grafico_ZOOMZOOM = [-80,80]
 
 #-------------------------------------------------
+
 
 
 def grafico_retornos(data0,data1,data2,data3,  lim_grafico,
                      color0,color1,color2,color3,
                      marker0,marker1,marker2,marker3,
                      label0,label1,label2,label3,
-                     pwdgraf, save_fig, nombre_archivo):
+                     pwdgraf, save_fig, nombre_archivo,a):
 
     lim_grafico=lim_grafico
 
@@ -123,6 +142,10 @@ def grafico_retornos(data0,data1,data2,data3,  lim_grafico,
     ax1.set_ylabel('$P(\Delta \lambda)/P(0)$',fontsize = 14)
     ax1.set_xlim(lim_grafico[0],lim_grafico[1])
     
+    if title == True:
+        numero = a
+        ax1.set_title(f'a = {numero}')
+    
     if save_fig == True:
         fig.savefig(pwdgraf+nombre_archivo+'.pdf', format='pdf')
 
@@ -132,13 +155,13 @@ grafico_retornos(data0,data1,data2,data3,  lim_grafico,
                      color0,color1,color2,color3,
                      marker0,marker1,marker2,marker3,
                      label0,label1,label2,label3,
-                     pwdgraf, save_fig, nombre_archivo)
+                     pwdgraf, save_fig, nombre_archivo,a)
 
 def grafico_retornos_zoom(data0,data1,data2,data3,  lim_grafico_zoom,
                      color0,color1,color2,color3,
                      marker0,marker1,marker2,marker3,
                      label0,label1,label2,label3,
-                     pwdgraf, save_fig, nombre_archivo):
+                     pwdgraf, save_fig, nombre_archivo,a):
 
     #ZOOM
     lim_grafico=lim_grafico_zoom
@@ -197,6 +220,10 @@ def grafico_retornos_zoom(data0,data1,data2,data3,  lim_grafico_zoom,
     ax1.set_xlim(lim_grafico_zoom[0],lim_grafico_zoom[1])
     #ax1.set_title('distribución de retornos (log return)')
     #fig.show()
+    
+    if title == True:
+        numero = a
+        ax1.set_title(f'a = {numero}')
 
     if save_fig == True:
         fig.savefig(pwdgraf+nombre_archivo+'_zoom'+'.pdf', format='pdf')
@@ -207,13 +234,13 @@ grafico_retornos_zoom(data0,data1,data2,data3,  lim_grafico_zoom,
                      color0,color1,color2,color3,
                      marker0,marker1,marker2,marker3,
                      label0,label1,label2,label3,
-                     pwdgraf, save_fig, nombre_archivo)
+                     pwdgraf, save_fig, nombre_archivo,a)
 
 def grafico_retornos_ZOOMZOOM(data0,data1,data2,data3,  lim_grafico_ZOOMZOOM,
                      color0,color1,color2,color3,
                      marker0,marker1,marker2,marker3,
                      label0,label1,label2,label3,
-                     pwdgraf, save_fig, nombre_archivo):
+                     pwdgraf, save_fig, nombre_archivo,a):
 
     #ZOOM ZOOM
 
@@ -269,7 +296,11 @@ def grafico_retornos_ZOOMZOOM(data0,data1,data2,data3,  lim_grafico_ZOOMZOOM,
     #ax1.legend(fontsize = 15)
     #ax1.set_title('distribución de retornos (log return)')
     ax1.set_xlim(lim_grafico_ZOOMZOOM[0],lim_grafico_ZOOMZOOM[1])
-    ax1.set_ylim(0.01,2)
+    #ax1.set_ylim(0.01,2)
+    
+    if title == True:
+        numero = a
+        ax1.set_title(f'a = {numero}')
 
     if save_fig == True:
         fig.savefig(pwdgraf+nombre_archivo+'_ZOOMZOOM'+'.pdf', format='pdf')
@@ -282,4 +313,4 @@ grafico_retornos_ZOOMZOOM(data0,data1,data2,data3,  lim_grafico_ZOOMZOOM,
                      color0,color1,color2,color3,
                      marker0,marker1,marker2,marker3,
                      label0,label1,label2,label3,
-                     pwdgraf, save_fig, nombre_archivo) 
+                     pwdgraf, save_fig, nombre_archivo,a) 
