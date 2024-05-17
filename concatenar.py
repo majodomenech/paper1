@@ -12,26 +12,29 @@ pwd = 'C:\\Users\\mariajose\\Documents\\GitHub\\simulaciones\\simulaciones-a-fij
 #archivo = 'deltas_44990_10000_50E3.txt'
 #archivo = 'retornos_44990_10000_50E3.txt'
 #archivo = 'deltas_10_5000_50E3.txt'
-archivo = 'retornos_10_5000_50E3.txt'
-
+#archivo = 'retornos_10_5000_50E3.txt'
+#archivo = 'deltas_10_10000_50E3.txt'
+archivo = 'retornos_10_10000_50E3.txt'
 
 #archivo_resultante = 'delta_8990_10000_10E6_concatenado1.txt'
 #archivo_resultante = 'retorno_8990_10000_10E6_concatenado1.txt'
 #archivo_resultante = 'delta_44990_10000_10E6_concatenado1.txt'
 #archivo_resultante = 'retorno_44990_10000_10E6_concatenado1.txt'
 #archivo_resultante = 'delta_10_5000_10E6_concatenado1.txt'
-archivo_resultante = 'retorno_10_5000_10E6_concatenado1.txt'
+#archivo_resultante = 'retorno_10_5000_10E6_concatenado1.txt'
+#archivo_resultante = 'delta_10_10000_10E6_concatenado1.txt'
+archivo_resultante = 'retorno_10_10000_10E6_concatenado1.txt'
 
 #------------------------------------------------
 
-archivo_names = np.loadtxt(pwd+'para-concatenar2\\'+archivo, dtype='str')
+archivo_names = np.loadtxt(pwd+'para-concatenar3\\'+archivo, dtype='str')
 
 print('ejemplo: ', archivo_names[99]) 
 
 arrays = []
 
 # Ruta base de los archivos
-base_path = pwd+'para-concatenar2\\'
+base_path = pwd+'para-concatenar3\\'
 
 i=1
 
